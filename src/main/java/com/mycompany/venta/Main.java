@@ -3,7 +3,7 @@
  */
 
 package com.mycompany.venta;
-import view.Login;
+import View.Login;
 
 public class Main {
 
