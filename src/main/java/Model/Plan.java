@@ -18,16 +18,7 @@ public class Plan {
     @Column(name = "COSTO")
     private Double costo;
 
-    public Plan(Integer id, String tipoPlan, String descripcion, Double costo) {
-        this.id = id;
-        this.tipoPlan = tipoPlan;
-        this.descripcion = descripcion;
-        this.costo = costo;
-    }
 
-    public Plan() {
-
-    }
 
     public Integer getId() {
         return id;
