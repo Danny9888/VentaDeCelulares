@@ -4,6 +4,9 @@
  */
 package View;
 
+import Controller.CelularController;
+import Model.Celular;
+
 import java.awt.Color;
 import javax.swing.JOptionPane;
 
@@ -53,7 +56,7 @@ public class IngresoCelular extends javax.swing.JFrame {
         campoPrecioVenta = new javax.swing.JTextField();
         jSeparator10 = new javax.swing.JSeparator();
         campoIMEI = new javax.swing.JTextField();
-        codigoBarra = new javax.swing.JTextField();
+        campoCodigoBarra = new javax.swing.JTextField();
         jSeparator11 = new javax.swing.JSeparator();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -264,12 +267,12 @@ public class IngresoCelular extends javax.swing.JFrame {
         });
         jPanel1.add(campoIMEI, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 120, 270, 40));
 
-        codigoBarra.setBackground(new java.awt.Color(17, 38, 53));
-        codigoBarra.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        codigoBarra.setForeground(new java.awt.Color(190, 208, 235));
-        codigoBarra.setText("CODIGO BARRA");
-        codigoBarra.setBorder(null);
-        codigoBarra.addFocusListener(new java.awt.event.FocusAdapter() {
+        campoCodigoBarra.setBackground(new java.awt.Color(17, 38, 53));
+        campoCodigoBarra.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        campoCodigoBarra.setForeground(new java.awt.Color(190, 208, 235));
+        campoCodigoBarra.setText("CODIGO BARRA");
+        campoCodigoBarra.setBorder(null);
+        campoCodigoBarra.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 codigoBarraFocusGained(evt);
             }
@@ -277,12 +280,12 @@ public class IngresoCelular extends javax.swing.JFrame {
                 codigoBarraFocusLost(evt);
             }
         });
-        codigoBarra.addActionListener(new java.awt.event.ActionListener() {
+        campoCodigoBarra.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 codigoBarraActionPerformed(evt);
             }
         });
-        jPanel1.add(codigoBarra, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 120, 260, 40));
+        jPanel1.add(campoCodigoBarra, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 120, 260, 40));
         jPanel1.add(jSeparator11, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 460, 280, 10));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -347,6 +350,7 @@ public class IngresoCelular extends javax.swing.JFrame {
 
     private void botonGuardarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonGuardarMouseClicked
         JOptionPane.showMessageDialog(null, "Celular guardado exitosamente");
+        guardarCelular();
         MenuPrincipal menuPrincipal = new MenuPrincipal();
         menuPrincipal.setSize(1100, 700);
         menuPrincipal.setVisible(true);
@@ -428,18 +432,44 @@ public class IngresoCelular extends javax.swing.JFrame {
     }//GEN-LAST:event_codigoBarraActionPerformed
 
     private void codigoBarraFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_codigoBarraFocusLost
-        if(codigoBarra.getText().isBlank()){
-            codigoBarra.setText("CODIGO BARRA");
+        if(campoCodigoBarra.getText().isBlank()){
+            campoCodigoBarra.setText("CODIGO BARRA");
         }
     }//GEN-LAST:event_codigoBarraFocusLost
 
     private void codigoBarraFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_codigoBarraFocusGained
-        codigoBarra.setText("");
-    }//GEN-LAST:event_codigoBarraFocusGained
+        campoCodigoBarra.setText("");
+    }
 
-    /**
-     * @param args the command line arguments
-     */
+    private int obtenerPlan(){
+        String planSeleccionado = campoPlan.getSelectedItem().toString();
+        if (planSeleccionado.equals("PREPAGO")){
+            return 1;
+        }else if (planSeleccionado.equals("POSTPAGO")){
+            return 2;
+        }
+        return 0;
+    }
+
+    public void guardarCelular(){
+        String codigoBarra = campoCodigoBarra.getText();
+        String IMEI = campoIMEI.getText();
+        String marca = campoMarca.getText();
+        double precioCosto = Double.parseDouble(campoPrecioCosto.getText());
+        String modelo =  campoModelo.getText();
+        double precioVenta = Double.parseDouble(campoPrecioVenta.getText());
+        String colorSeleccionado = campoColor.getSelectedItem().toString();
+        String numeroCelular = campoNumeroCelular.getText();
+        int plan = obtenerPlan();
+        Celular celular = new Celular(codigoBarra, modelo, marca, colorSeleccionado, numeroCelular,
+                precioCosto, precioVenta, IMEI);
+        CelularController celularController = new CelularController();
+        System.out.println(plan);
+        celularController.guardarCelular(celular, plan);
+
+    }
+
+
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -482,7 +512,7 @@ public class IngresoCelular extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> campoPlan;
     private javax.swing.JTextField campoPrecioCosto;
     private javax.swing.JTextField campoPrecioVenta;
-    private javax.swing.JTextField codigoBarra;
+    private javax.swing.JTextField campoCodigoBarra;
     private javax.swing.JLabel iconoCelular;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel4;

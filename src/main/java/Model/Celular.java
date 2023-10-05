@@ -30,15 +30,15 @@ public class Celular {
     public Celular() {
     }
 
-    public Celular(String codigoBarra, String modelo, String color, String noCelular, double precioCosto, double precioVenta, String IMEI, Plan plan) {
+    public Celular(String codigoBarra, String modelo, String marca, String color, String noCelular, double precioCosto, double precioVenta, String IMEI) {
         this.codigoBarra = codigoBarra;
         this.modelo = modelo;
+        this.marca = marca;
         this.color = color;
         this.noCelular = noCelular;
         this.precioCosto = precioCosto;
         this.precioVenta = precioVenta;
         this.IMEI = IMEI;
-        this.plan = plan;
     }
 
     public String getCodigoBarra() {
