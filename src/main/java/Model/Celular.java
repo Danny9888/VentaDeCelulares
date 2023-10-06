@@ -5,6 +5,8 @@ import jakarta.persistence.*;
 @Entity
 @Table(name = "celulares")
 public class Celular {
+    @Id
+    private String IMEI;
 
     @Column(name = "CODIGO_BARRA")
     private String codigoBarra;
@@ -20,8 +22,9 @@ public class Celular {
     private double precioCosto;
     @Column(name = "PRECIO_VENTA")
     private double precioVenta;
-    @Id
-    private String IMEI;
+
+    @Column(name = "ESTADO_VENTA")
+    private boolean disponible;
 
     @ManyToOne
     @JoinColumn(name = "ID_PLAN")
@@ -30,7 +33,8 @@ public class Celular {
     public Celular() {
     }
 
-    public Celular(String codigoBarra, String modelo, String marca, String color, String noCelular, double precioCosto, double precioVenta, String IMEI) {
+    public Celular(String codigoBarra, String modelo, String marca, String color, String noCelular,
+                   double precioCosto, double precioVenta, String IMEI, boolean estadoVenta) {
         this.codigoBarra = codigoBarra;
         this.modelo = modelo;
         this.marca = marca;
@@ -39,6 +43,7 @@ public class Celular {
         this.precioCosto = precioCosto;
         this.precioVenta = precioVenta;
         this.IMEI = IMEI;
+        this.disponible = estadoVenta;
     }
 
     public String getCodigoBarra() {

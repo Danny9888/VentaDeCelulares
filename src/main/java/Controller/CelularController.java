@@ -27,7 +27,8 @@ public class CelularController {
 
     public List<Object[]> listarInventarioCelular(){
         List<Object[]> celulares;
-        celulares = em.createQuery("SELECT COUNT(c.codigoBarra), c.marca, c.modelo, c.precioVenta FROM Celular c " +
+        celulares = em.createQuery("SELECT COUNT(c.codigoBarra), c.marca, c.modelo, c.precioVenta " +
+                "FROM Celular c WHERE disponible = false " +
                 "GROUP BY(c.codigoBarra)", Object[].class).getResultList();
         return celulares;
     }
