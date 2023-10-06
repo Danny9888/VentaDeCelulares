@@ -5,9 +5,12 @@ import Model.Plan;
 import jakarta.persistence.EntityManager;
 import util.JpaUtil;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class CelularController {
+    EntityManager em = JpaUtil.getEntityManager();
     public void guardarCelular(Celular celular, int idPlan){
-        EntityManager em = JpaUtil.getEntityManager();
         try{
             em.getTransaction().begin();
             Plan plan = em.find(Plan.class, idPlan);
@@ -22,4 +25,10 @@ public class CelularController {
         }
     }
 
+    public List<Object[]> listarInventarioCelular(){
+        List<Object[]> celulares;
+        celulares = em.createQuery("SELECT COUNT(c.codigoBarra), c.marca, c.modelo, c.precioVenta FROM Celular c " +
+                "GROUP BY(c.codigoBarra)", Object[].class).getResultList();
+        return celulares;
+    }
 }

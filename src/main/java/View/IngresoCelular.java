@@ -464,7 +464,6 @@ public class IngresoCelular extends javax.swing.JFrame {
         Celular celular = new Celular(codigoBarra, modelo, marca, colorSeleccionado, numeroCelular,
                 precioCosto, precioVenta, IMEI);
         CelularController celularController = new CelularController();
-        System.out.println(plan);
         celularController.guardarCelular(celular, plan);
 
     }

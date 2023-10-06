@@ -4,6 +4,11 @@
  */
 package View;
 
+import Controller.CelularController;
+
+import javax.swing.table.DefaultTableModel;
+import java.util.List;
+
 /**
  *
  * @author wilia
@@ -28,33 +33,26 @@ public class InventarioCelulares extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tablaInventarioCelulares = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        botonBuscar = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JSeparator();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel1.setBackground(new java.awt.Color(17, 38, 53));
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tablaInventarioCelulares.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
                 "INVENTARIO", "MARCA", "MODELO", "PRECIO"
             }
         ));
-        jTable1.setRowHeight(35);
-        jScrollPane1.setViewportView(jTable1);
+        tablaInventarioCelulares.setRowHeight(35);
+        jScrollPane1.setViewportView(tablaInventarioCelulares);
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 25)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(190, 208, 235));
@@ -66,7 +64,12 @@ public class InventarioCelulares extends javax.swing.JFrame {
         jTextField1.setForeground(new java.awt.Color(190, 208, 235));
         jTextField1.setBorder(null);
 
-        jButton1.setText("BUSCAR");
+        botonBuscar.setText("BUSCAR");
+        botonBuscar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                botonBuscarMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -77,7 +80,7 @@ public class InventarioCelulares extends javax.swing.JFrame {
                 .addContainerGap(148, Short.MAX_VALUE)
                 .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 495, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(botonBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(22, 22, 22))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(148, 148, 148)
@@ -95,7 +98,7 @@ public class InventarioCelulares extends javax.swing.JFrame {
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(51, 51, 51))
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(botonBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -116,6 +119,10 @@ public class InventarioCelulares extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void botonBuscarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonBuscarMouseClicked
+        ingresarDatosTabla();
+    }//GEN-LAST:event_botonBuscarMouseClicked
 
     /**
      * @param args the command line arguments
@@ -153,13 +160,30 @@ public class InventarioCelulares extends javax.swing.JFrame {
         });
     }
 
+    public void ingresarDatosTabla(){
+        CelularController celularController = new CelularController();
+        List<Object[]> celulares = celularController.listarInventarioCelular();
+        DefaultTableModel listaCelulares = (DefaultTableModel) tablaInventarioCelulares.getModel();
+        listaCelulares.setRowCount(0);
+        for(Object[] celular : celulares){
+            Long cantidad = (Long) celular[0];
+            String marca = (String) celular[1];
+            String modelo = (String) celular[2];
+            Double precioVenta = (Double) celular[3];
+            listaCelulares.addRow(new Object[]{cantidad, marca, modelo, precioVenta});
+        }
+
+    }
+
+
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton botonBuscar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable tablaInventarioCelulares;
     private javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
 }
