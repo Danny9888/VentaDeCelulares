@@ -48,7 +48,7 @@ public class InventarioCelulares extends javax.swing.JFrame {
 
             },
             new String [] {
-                "INVENTARIO", "MARCA", "MODELO", "PRECIO"
+                "INVENTARIO", "MARCA", "MODELO", "PLAN", "PRECIO"
             }
         ));
         tablaInventarioCelulares.setRowHeight(35);
@@ -169,8 +169,9 @@ public class InventarioCelulares extends javax.swing.JFrame {
             Long cantidad = (Long) celular[0];
             String marca = (String) celular[1];
             String modelo = (String) celular[2];
-            Double precioVenta = (Double) celular[3];
-            listaCelulares.addRow(new Object[]{cantidad, marca, modelo, precioVenta});
+            String plan = (String) celular[3];
+            Double precioVenta = (Double) celular[4];
+            listaCelulares.addRow(new Object[]{cantidad, marca, modelo,plan, precioVenta});
         }
 
     }

@@ -23,7 +23,7 @@ public class Celular {
     @Column(name = "PRECIO_VENTA")
     private double precioVenta;
 
-    @Column(name = "ESTADO_VENTA")
+    @Column(name = "DISPONIBLE")
     private boolean disponible;
 
     @ManyToOne

@@ -462,7 +462,7 @@ public class IngresoCelular extends javax.swing.JFrame {
         String numeroCelular = campoNumeroCelular.getText();
         int plan = obtenerPlan();
         Celular celular = new Celular(codigoBarra, modelo, marca, colorSeleccionado, numeroCelular,
-                precioCosto, precioVenta, IMEI,false);
+                precioCosto, precioVenta, IMEI,true);
         CelularController celularController = new CelularController();
         celularController.guardarCelular(celular, plan);
 
