@@ -15,7 +15,8 @@ public class Pantalla {
         ventana.setVisible(true);
         ventana.setLocationRelativeTo(null);
         ventana.setResizable(false);
-        ventana.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+        ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
     }
 
     public static Pantalla getInstance(){
