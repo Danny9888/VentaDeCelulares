@@ -180,11 +180,12 @@ public class InventarioCelulares extends javax.swing.JFrame {
         listaCelulares.setRowCount(0);
         for(Object[] celular : celulares) {
             Long cantidad = (Long) celular[0];
-            String marca = (String) celular[1];
-            String modelo = (String) celular[2];
-            String plan = (String) celular[3];
-            Double precioVenta = (Double) celular[4];
-            listaCelulares.addRow(new Object[]{cantidad, marca, modelo, plan, precioVenta});
+            String codigoBarra = (String) celular[1];
+            String marca = (String) celular[2];
+            String modelo = (String) celular[3];
+            String plan = (String) celular[4];
+            Double precioVenta = (Double) celular[5];
+            listaCelulares.addRow(new Object[]{cantidad,codigoBarra, marca, modelo, plan, precioVenta});
             }
         }
 
