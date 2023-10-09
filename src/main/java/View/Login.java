@@ -4,6 +4,8 @@
  */
 package View;
 
+import tools.Pantalla;
+
 import java.awt.Color;
 
 /**
@@ -14,12 +16,16 @@ public class Login extends javax.swing.JFrame {
     
     Icono icono= new Icono();
     IconoMenu iconoMenu = new IconoMenu();
+    Pantalla pantalla = Pantalla.getInstance();
+    MenuPrincipal ventanaMenu;
     
     
     public Login() {
+        super("Login");
         initComponents();
         icono.setImageToLabel(logo, "src/main/java/imagenes/logo.png");
         icono.setImageToLabel(login, "src/main/java/imagenes/login.png");
+
         
     }
 
@@ -186,11 +192,7 @@ public class Login extends javax.swing.JFrame {
     }//GEN-LAST:event_entrarMouseExited
 
     private void entrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_entrarMouseClicked
-        MenuPrincipal menu = new MenuPrincipal();
-        menu.setSize(1100, 700);
-        menu.setVisible(true);
-        menu.setLocationRelativeTo(null);
-        menu.setResizable(false);
+        pantalla.abrirPantalla(ventanaMenu = new MenuPrincipal(),1100,700);
         this.dispose();
     }//GEN-LAST:event_entrarMouseClicked
      

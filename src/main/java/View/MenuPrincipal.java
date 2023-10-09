@@ -4,6 +4,8 @@
  */
 package View;
 
+import tools.Pantalla;
+
 import java.awt.Color;
 
 /**
@@ -13,6 +15,10 @@ import java.awt.Color;
 public class MenuPrincipal extends javax.swing.JFrame {
 
     Icono icono = new Icono();
+    IngresoCelular ventanaIngresarCelular;
+    Venta ventanaVenta;
+    Pantalla pantalla = Pantalla.getInstance();
+
     
     public MenuPrincipal() {
         initComponents();
@@ -20,8 +26,6 @@ public class MenuPrincipal extends javax.swing.JFrame {
         IconoMenu.setImageToLabel(iconoVenta, "src/main/java/imagenes/iconoVenta.png");
         IconoMenu.setImageToLabel(iconoBuscar, "src/main/java/imagenes/iconoBuscar.png");
         IconoMenu.setImageToLabel(iconoIngresar, "src/main/java/imagenes/iconoIngresar.png");
-        
-        
         String texto = "<html><body>Es una influyente empresa de telecomunicaciones en Guatemala que se especializa en la oferta de planes prepagos y postpagos para satisfacer las necesidades de comunicación de sus clientes. Como líder en el mercado de telecomunicaciones, CGSA se ha convertido en un nombre de confianza en todo el país gracias a su sólida infraestructura y una amplia gama de servicios de alta calidad.</body></html>";
         descripcion.setText(texto);
     }
@@ -218,11 +222,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_opcionIngresarMouseExited
 
     private void opcionIngresarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_opcionIngresarMouseClicked
-        IngresoCelular pantallaIngresar = new IngresoCelular();
-        pantallaIngresar.setSize(1100, 700);
-        pantallaIngresar.setVisible(true);
-        pantallaIngresar.setLocationRelativeTo(null);
-        pantallaIngresar.setResizable(false);
+        pantalla.abrirPantalla(ventanaIngresarCelular = new IngresoCelular(),1100,700);
         this.dispose();
     }//GEN-LAST:event_opcionIngresarMouseClicked
 
@@ -237,11 +237,9 @@ public class MenuPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_opcionVentaMouseEntered
 
     private void opcionVentaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_opcionVentaMouseClicked
+        Pantalla pantalla = Pantalla.getInstance();
         Venta pantallaVenta = new Venta();
-        pantallaVenta.setSize(1100, 700);
-        pantallaVenta.setVisible(true);
-        pantallaVenta.setLocationRelativeTo(null);
-        pantallaVenta.setResizable(false);
+        pantalla.abrirPantalla(pantallaVenta = new Venta(),1100,700);
         this.dispose();
     }//GEN-LAST:event_opcionVentaMouseClicked
 

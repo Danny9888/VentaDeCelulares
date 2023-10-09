@@ -6,6 +6,7 @@ package View;
 
 import Controller.CelularController;
 import Model.Celular;
+import tools.Pantalla;
 
 import java.awt.Color;
 import javax.swing.JOptionPane;
@@ -17,6 +18,8 @@ import javax.swing.JOptionPane;
 public class IngresoCelular extends javax.swing.JFrame {
 
     Icono icono = new Icono();
+    MenuPrincipal menuPrincipal;
+    Pantalla pantalla = Pantalla.getInstance();
     
     public IngresoCelular() {
         initComponents();
@@ -351,11 +354,7 @@ public class IngresoCelular extends javax.swing.JFrame {
     private void botonGuardarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonGuardarMouseClicked
         JOptionPane.showMessageDialog(null, "Celular guardado exitosamente");
         guardarCelular();
-        MenuPrincipal menuPrincipal = new MenuPrincipal();
-        menuPrincipal.setSize(1100, 700);
-        menuPrincipal.setVisible(true);
-        menuPrincipal.setLocationRelativeTo(null);
-        menuPrincipal.setResizable(false);
+        pantalla.abrirPantalla(menuPrincipal = new MenuPrincipal(),1100,700);
         this.dispose();
     }//GEN-LAST:event_botonGuardarMouseClicked
 

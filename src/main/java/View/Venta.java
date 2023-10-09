@@ -4,6 +4,8 @@
  */
 package View;
 
+import tools.Pantalla;
+
 import javax.swing.*;
 import java.awt.*;
 
@@ -12,6 +14,8 @@ import java.awt.*;
  * @author wilia
  */
 public class Venta extends javax.swing.JFrame {
+
+    Pantalla pantalla = Pantalla.getInstance();
 
     IconoMenu iconoMenu = new IconoMenu();
     public Venta() {
@@ -255,11 +259,7 @@ public class Venta extends javax.swing.JFrame {
 
     private void inventarioCelularMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_inventarioCelularMouseClicked
         InventarioCelulares pantallaInventarioCelular = new InventarioCelulares();
-        pantallaInventarioCelular.setSize(800, 500);
-        pantallaInventarioCelular.setVisible(true);
-        pantallaInventarioCelular.setLocationRelativeTo(null);
-        pantallaInventarioCelular.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        pantallaInventarioCelular.setResizable(false);
+        pantalla.abrirPantalla(pantallaInventarioCelular,800,500);
     }//GEN-LAST:event_inventarioCelularMouseClicked
 
     /**
