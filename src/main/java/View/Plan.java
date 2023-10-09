@@ -4,10 +4,6 @@
  */
 package View;
 
-/**
- *
- * @author wilia
- */
 public class Plan extends javax.swing.JFrame {
 
     Icono icono = new Icono();
