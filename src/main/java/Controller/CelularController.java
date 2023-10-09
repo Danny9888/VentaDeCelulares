@@ -25,11 +25,12 @@ public class CelularController {
         }
     }
 
-    public List<Object[]> listarInventarioCelular(){
+    public List<Object[]> listarInventarioCelular(String filtroMarca){
         List<Object[]> celulares;
         celulares = em.createQuery("SELECT COUNT(c.codigoBarra), c.marca, c.modelo, p.tipoPlan,c.precioVenta " +
                 "FROM Celular c INNER JOIN Plan p ON c.plan = p WHERE c.disponible = true " +
-                "GROUP BY(c.codigoBarra)", Object[].class).getResultList();
+                "AND c.marca LIKE :filtroMarca " +
+                "GROUP BY(c.codigoBarra)", Object[].class).setParameter("filtroMarca",  "%" + filtroMarca + "%").getResultList();
         return celulares;
     }
 }

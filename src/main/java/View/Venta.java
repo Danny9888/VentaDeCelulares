@@ -4,8 +4,8 @@
  */
 package View;
 
-import java.awt.Color;
-import java.awt.Font;
+import javax.swing.*;
+import java.awt.*;
 
 /**
  *
@@ -258,6 +258,7 @@ public class Venta extends javax.swing.JFrame {
         pantallaInventarioCelular.setSize(800, 500);
         pantallaInventarioCelular.setVisible(true);
         pantallaInventarioCelular.setLocationRelativeTo(null);
+        pantallaInventarioCelular.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         pantallaInventarioCelular.setResizable(false);
     }//GEN-LAST:event_inventarioCelularMouseClicked
 
