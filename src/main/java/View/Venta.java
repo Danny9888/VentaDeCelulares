@@ -4,8 +4,10 @@
  */
 package View;
 
-import java.awt.Color;
-import java.awt.Font;
+import tools.Pantalla;
+
+import javax.swing.*;
+import java.awt.*;
 
 /**
  *
@@ -13,12 +15,18 @@ import java.awt.Font;
  */
 public class Venta extends javax.swing.JFrame {
 
+    Pantalla pantalla = Pantalla.getInstance();
+
     IconoMenu iconoMenu = new IconoMenu();
+    Icono icono = new Icono();
+    MenuPrincipal menuPrincipal;
+    
     public Venta() {
         initComponents();
         Font font = new Font("Arial", Font.BOLD, 15);
         IconoMenu.setImageToLabel(iconoCelular, "src/main/java/imagenes/iconoSmartphone.png");
         IconoMenu.setImageToLabel(iconoRecarga, "src/main/java/imagenes/iconoRecarga.png");
+        icono.setImageToLabel(botonAtras,"src/main/java/imagenes/iconoAtras.png");
         tablaListaProductos.getTableHeader().setFont(font);
     }
 
@@ -36,6 +44,7 @@ public class Venta extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
+        botonAtras = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
         inventarioCelular = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
@@ -66,15 +75,27 @@ public class Venta extends javax.swing.JFrame {
 
         jPanel3.setBackground(new java.awt.Color(17, 38, 53));
 
+        botonAtras.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                botonAtrasMouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 320, Short.MAX_VALUE)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(26, 26, 26)
+                .addComponent(botonAtras, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(224, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 101, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                .addContainerGap(21, Short.MAX_VALUE)
+                .addComponent(botonAtras, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(20, 20, 20))
         );
 
         jPanel2.add(jPanel3);
@@ -255,11 +276,15 @@ public class Venta extends javax.swing.JFrame {
 
     private void inventarioCelularMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_inventarioCelularMouseClicked
         InventarioCelulares pantallaInventarioCelular = new InventarioCelulares();
-        pantallaInventarioCelular.setSize(800, 500);
-        pantallaInventarioCelular.setVisible(true);
-        pantallaInventarioCelular.setLocationRelativeTo(null);
-        pantallaInventarioCelular.setResizable(false);
+        pantalla.abrirPantalla(pantallaInventarioCelular,800,500);
+        pantallaInventarioCelular.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
     }//GEN-LAST:event_inventarioCelularMouseClicked
+
+    private void botonAtrasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonAtrasMouseClicked
+        Pantalla pantalla = Pantalla.getInstance();
+        pantalla.abrirPantalla(menuPrincipal = new MenuPrincipal(), 1100, 700);
+        this.dispose();
+    }//GEN-LAST:event_botonAtrasMouseClicked
 
     /**
      * @param args the command line arguments
@@ -297,6 +322,7 @@ public class Venta extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel botonAtras;
     private javax.swing.JLabel iconoCelular;
     private javax.swing.JLabel iconoRecarga;
     private javax.swing.JPanel inventarioCelular;

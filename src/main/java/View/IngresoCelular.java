@@ -6,6 +6,7 @@ package View;
 
 import Controller.CelularController;
 import Model.Celular;
+import tools.Pantalla;
 
 import java.awt.Color;
 import javax.swing.JOptionPane;
@@ -17,11 +18,14 @@ import javax.swing.JOptionPane;
 public class IngresoCelular extends javax.swing.JFrame {
 
     Icono icono = new Icono();
+    MenuPrincipal menuPrincipal;
+    Pantalla pantalla = Pantalla.getInstance();
     
     public IngresoCelular() {
         initComponents();
         campoColor.requestFocusInWindow();
         icono.setImageToLabel(iconoCelular, "src/main/java/imagenes/iconoCelular.png");
+        icono.setImageToLabel(botonAtras, "src/main/java/imagenes/iconoAtras.png");
         
     }
 
@@ -58,6 +62,7 @@ public class IngresoCelular extends javax.swing.JFrame {
         campoIMEI = new javax.swing.JTextField();
         campoCodigoBarra = new javax.swing.JTextField();
         jSeparator11 = new javax.swing.JSeparator();
+        botonAtras = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -274,19 +279,26 @@ public class IngresoCelular extends javax.swing.JFrame {
         campoCodigoBarra.setBorder(null);
         campoCodigoBarra.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
-                codigoBarraFocusGained(evt);
+                campoCodigoBarraFocusGained(evt);
             }
             public void focusLost(java.awt.event.FocusEvent evt) {
-                codigoBarraFocusLost(evt);
+                campoCodigoBarraFocusLost(evt);
             }
         });
         campoCodigoBarra.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                codigoBarraActionPerformed(evt);
+                campoCodigoBarraActionPerformed(evt);
             }
         });
         jPanel1.add(campoCodigoBarra, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 120, 260, 40));
         jPanel1.add(jSeparator11, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 460, 280, 10));
+
+        botonAtras.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                botonAtrasMouseClicked(evt);
+            }
+        });
+        jPanel1.add(botonAtras, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 30, 70, 60));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -351,11 +363,7 @@ public class IngresoCelular extends javax.swing.JFrame {
     private void botonGuardarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonGuardarMouseClicked
         JOptionPane.showMessageDialog(null, "Celular guardado exitosamente");
         guardarCelular();
-        MenuPrincipal menuPrincipal = new MenuPrincipal();
-        menuPrincipal.setSize(1100, 700);
-        menuPrincipal.setVisible(true);
-        menuPrincipal.setLocationRelativeTo(null);
-        menuPrincipal.setResizable(false);
+        pantalla.abrirPantalla(menuPrincipal = new MenuPrincipal(),1100,700);
         this.dispose();
     }//GEN-LAST:event_botonGuardarMouseClicked
 
@@ -427,19 +435,26 @@ public class IngresoCelular extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_campoIMEIActionPerformed
 
-    private void codigoBarraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_codigoBarraActionPerformed
+    private void campoCodigoBarraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoCodigoBarraActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_codigoBarraActionPerformed
+    }//GEN-LAST:event_campoCodigoBarraActionPerformed
 
-    private void codigoBarraFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_codigoBarraFocusLost
+    private void campoCodigoBarraFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_campoCodigoBarraFocusLost
         if(campoCodigoBarra.getText().isBlank()){
             campoCodigoBarra.setText("CODIGO BARRA");
         }
-    }//GEN-LAST:event_codigoBarraFocusLost
+    }//GEN-LAST:event_campoCodigoBarraFocusLost
 
-    private void codigoBarraFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_codigoBarraFocusGained
+    private void campoCodigoBarraFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_campoCodigoBarraFocusGained
         campoCodigoBarra.setText("");
-    }
+    }//GEN-LAST:event_campoCodigoBarraFocusGained
+
+    private void botonAtrasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonAtrasMouseClicked
+        Pantalla pantalla = Pantalla.getInstance();
+        pantalla.abrirPantalla(menuPrincipal = new MenuPrincipal(), 1100, 700);
+        this.dispose();
+    }//GEN-LAST:event_botonAtrasMouseClicked
+
 
     private int obtenerPlan(){
         String planSeleccionado = campoPlan.getSelectedItem().toString();
@@ -502,7 +517,9 @@ public class IngresoCelular extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel botonAtras;
     private javax.swing.JButton botonGuardar;
+    private javax.swing.JTextField campoCodigoBarra;
     private javax.swing.JComboBox<String> campoColor;
     private javax.swing.JTextField campoIMEI;
     private javax.swing.JTextField campoMarca;
@@ -511,7 +528,6 @@ public class IngresoCelular extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> campoPlan;
     private javax.swing.JTextField campoPrecioCosto;
     private javax.swing.JTextField campoPrecioVenta;
-    private javax.swing.JTextField campoCodigoBarra;
     private javax.swing.JLabel iconoCelular;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel4;

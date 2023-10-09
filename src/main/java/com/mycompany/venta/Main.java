@@ -4,14 +4,13 @@
 
 package com.mycompany.venta;
 import View.Login;
+import tools.Pantalla;
 
 public class Main {
 
     public static void main(String[] args) {
-        Login pantalla = new Login();
-        pantalla.setSize(1100, 700);
-        pantalla.setVisible(true);
-        pantalla.setLocationRelativeTo(null);
-        pantalla.setResizable(false); 
+        Login login = new Login();
+        Pantalla pantalla = Pantalla.getInstance();
+        pantalla.abrirPantalla(login, 1100, 700);
     }
 }
