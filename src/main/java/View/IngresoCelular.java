@@ -6,9 +6,11 @@ package View;
 
 import Controller.CelularController;
 import Model.Celular;
+import Model.Plan;
 import tools.Pantalla;
 
 import java.awt.Color;
+import java.util.List;
 import javax.swing.JOptionPane;
 
 /**
@@ -20,6 +22,7 @@ public class IngresoCelular extends javax.swing.JFrame {
     Icono icono = new Icono();
     MenuPrincipal menuPrincipal;
     Pantalla pantalla = Pantalla.getInstance();
+    CelularController celularC;
     
     public IngresoCelular() {
         initComponents();
@@ -442,11 +445,21 @@ public class IngresoCelular extends javax.swing.JFrame {
     private void campoCodigoBarraFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_campoCodigoBarraFocusLost
         if(campoCodigoBarra.getText().isBlank()){
             campoCodigoBarra.setText("CODIGO BARRA");
+        }else {
+            CelularController celularController = new CelularController();
+            llenarCampos();
         }
+
     }//GEN-LAST:event_campoCodigoBarraFocusLost
 
     private void campoCodigoBarraFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_campoCodigoBarraFocusGained
         campoCodigoBarra.setText("");
+        campoMarca.setEnabled(true);
+        campoModelo.setEnabled(true);
+        campoColor.setEnabled(true);
+        campoPlan.setEnabled(true);
+        campoMarca.setText("MARCA");
+        campoModelo.setText("MODELO");
     }//GEN-LAST:event_campoCodigoBarraFocusGained
 
     private void botonAtrasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonAtrasMouseClicked
@@ -478,9 +491,26 @@ public class IngresoCelular extends javax.swing.JFrame {
         int plan = obtenerPlan();
         Celular celular = new Celular(codigoBarra, modelo, marca, colorSeleccionado, numeroCelular,
                 precioCosto, precioVenta, IMEI,true);
-        CelularController celularController = new CelularController();
-        celularController.guardarCelular(celular, plan);
+        celularC = new CelularController();
+        celularC.guardarCelular(celular, plan);
+    }
 
+    public void llenarCampos(){
+        Object[] celular = new CelularController().buscarCelular(campoCodigoBarra.getText());
+        if (celular != null) {
+            String marca = (String) celular[1];
+            String modelo = (String) celular[2];
+            String color = (String) celular[3];
+            String plan = (String) celular[4];
+            campoMarca.setText(marca);
+            campoModelo.setText(modelo);
+            campoColor.setSelectedItem(color);
+            /*campoPlan.setSelectedItem(plan);*/
+            campoMarca.setEnabled(false);
+            campoModelo.setEnabled(false);
+            campoColor.setEnabled(false);
+            campoPlan.setEnabled(false);
+        }
     }
 
 
