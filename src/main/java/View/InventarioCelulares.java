@@ -8,18 +8,22 @@ import Controller.CelularController;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
+import java.awt.event.KeyEvent;
 import java.util.List;
+import tools.Pantalla;
 
 /**
  *
  * @author wilia
  */
 public class InventarioCelulares extends javax.swing.JFrame {
-
+    Pantalla pantalla = Pantalla.getInstance();
+    InventarioLotes inventarioLotes;
 
 
     public InventarioCelulares() {
         initComponents();
+        tablaInventarioCelulares.getInputMap(JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT).put(KeyStroke.getKeyStroke(KeyEvent.VK_ENTER, 0), "none");
     }
 
     /**
@@ -58,6 +62,11 @@ public class InventarioCelulares extends javax.swing.JFrame {
         tablaInventarioCelulares.setRowHeight(35);
         tablaInventarioCelulares.setSelectionBackground(new java.awt.Color(102, 102, 102));
         tablaInventarioCelulares.setSelectionForeground(new java.awt.Color(255, 255, 255));
+        tablaInventarioCelulares.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                tablaInventarioCelularesKeyReleased(evt);
+            }
+        });
         jScrollPane1.setViewportView(tablaInventarioCelulares);
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 25)); // NOI18N
@@ -132,6 +141,19 @@ public class InventarioCelulares extends javax.swing.JFrame {
     private void botonBuscarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonBuscarMouseClicked
         ingresarDatosTabla();
     }//GEN-LAST:event_botonBuscarMouseClicked
+
+    private void tablaInventarioCelularesKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tablaInventarioCelularesKeyReleased
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            int selectedRow = tablaInventarioCelulares.getSelectedRow();
+            Object marca = tablaInventarioCelulares.getValueAt(selectedRow, 1);
+            String marcaString = marca.toString();
+            System.out.println(marcaString);
+            pantalla.abrirPantalla(inventarioLotes = new InventarioLotes(), 600, 350);
+            inventarioLotes.mostrarCeuluaresPorLote(marcaString);
+            inventarioLotes.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+            this.dispose();
+        }
+    }//GEN-LAST:event_tablaInventarioCelularesKeyReleased
 
     /**
      * @param args the command line arguments

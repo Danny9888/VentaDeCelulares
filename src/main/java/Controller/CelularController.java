@@ -27,12 +27,33 @@ public class CelularController {
 
     public List<Object[]> listarInventarioCelular(String filtroMarca){
         List<Object[]> celulares;
-        celulares = em.createQuery("SELECT COUNT(c.codigoBarra),c.codigoBarra, MAX(c.marca), MAX(c.modelo), MAX(p.tipoPlan), MAX(c.precioVenta) " +
-                "FROM Celular c INNER JOIN Plan p ON c.plan = p WHERE c.disponible = true " +
-                "AND c.marca LIKE :filtroMarca " +
-                "GROUP BY c.codigoBarra", Object[].class).setParameter("filtroMarca",  "%" + filtroMarca + "%").getResultList();
-        return celulares;
+        try {
+            celulares = em.createQuery("SELECT COUNT(c.codigoBarra), c.codigoBarra, MAX(c.marca), MAX(c.modelo), MAX(p.tipoPlan), MAX(c.precioVenta) " +
+                    "FROM Celular c INNER JOIN Plan p ON c.plan = p WHERE c.disponible = true " +
+                    "AND c.marca LIKE :filtroMarca " +
+                    "GROUP BY c.codigoBarra ", Object[].class).setParameter("filtroMarca", "%" + filtroMarca + "%").getResultList();
+            return celulares;
+        }catch (NoResultException e){
+            return null;
+        }finally {
+            em.close();
+        }
     }
+
+    public List<Object[]> listarCelularesPorLote(String codigoBarra){
+        List<Object[]> celulares;
+        try {
+            celulares = em.createQuery("SELECT c.IMEI, c.marca,  c.modelo, p.tipoPlan, c.precioVenta " +
+                    "FROM Celular c INNER JOIN Plan p ON c.plan = p WHERE c.disponible = true  AND c.codigoBarra = :codigoBarra "
+                    , Object[].class).setParameter("codigoBarra", codigoBarra).getResultList();
+            return celulares;
+        }catch (NoResultException e){
+            return null;
+        }finally {
+            em.close();
+        }
+    }
+
 
     public Object[] buscarCelular(String codigoBarra) {
         try {
@@ -46,6 +67,8 @@ public class CelularController {
             }
         }catch (NoResultException e){
                 System.out.println("Celular no encontrado");
+        }finally {
+            em.close();
         }
         return null;
     }
