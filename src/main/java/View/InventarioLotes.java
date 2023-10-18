@@ -6,12 +6,8 @@ package View;
 
 import Controller.CelularController;
 
-import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.util.List;
-
-import Model.Celular;
-import tools.Pantalla;
 
 /**
  *
