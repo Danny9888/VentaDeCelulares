@@ -344,6 +344,6 @@ public class Venta extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
     private javax.swing.JScrollPane jScrollPane2;
-    public javax.swing.JTable tablaListaProductos;
+    protected javax.swing.JTable tablaListaProductos;
     // End of variables declaration//GEN-END:variables
 }
