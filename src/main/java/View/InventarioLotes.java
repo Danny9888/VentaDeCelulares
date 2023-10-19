@@ -88,7 +88,10 @@ public class InventarioLotes extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void tablaInventarioCelularesLotesKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tablaInventarioCelularesKeyReleased
-        llenarTabla();
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER){
+            this.dispose();
+            llenarTabla();
+        }
     }//GEN-LAST:event_tablaInventarioCelularesKeyReleased
 
     /**

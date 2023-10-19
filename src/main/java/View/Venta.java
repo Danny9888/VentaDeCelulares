@@ -198,26 +198,18 @@ public class Venta extends javax.swing.JFrame {
 
         jPanel2.add(jPanel8);
 
+        tablaListaProductos.setFont(new java.awt.Font("Segoe UI", 1, 20)); // NOI18N
         tablaListaProductos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+
             },
             new String [] {
-                "CANTIDAD", "PRODUCTO", "DESCRIPCION", "PRECIO", "TOTAL"
+                "CANTIDAD", "PRODUCTO", "DESCRIPCION", "PRECIO"
             }
         ));
         tablaListaProductos.setRowHeight(35);
+        tablaListaProductos.setSelectionBackground(new java.awt.Color(102, 102, 102));
+        tablaListaProductos.setSelectionForeground(new java.awt.Color(255, 255, 255));
         jScrollPane2.setViewportView(tablaListaProductos);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
