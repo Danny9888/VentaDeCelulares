@@ -145,11 +145,11 @@ public class InventarioCelulares extends javax.swing.JFrame {
     private void tablaInventarioCelularesKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tablaInventarioCelularesKeyReleased
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
             int selectedRow = tablaInventarioCelulares.getSelectedRow();
-            Object marca = tablaInventarioCelulares.getValueAt(selectedRow, 1);
-            String marcaString = marca.toString();
-            System.out.println(marcaString);
+            Object codigoBarra = tablaInventarioCelulares.getValueAt(selectedRow, 1);
+            String codigoBarraString = codigoBarra.toString();
+            System.out.println(codigoBarra);
             pantalla.abrirPantalla(inventarioLotes = new InventarioLotes(), 600, 350);
-            inventarioLotes.mostrarCeuluaresPorLote(marcaString);
+            inventarioLotes.mostrarCeuluaresPorLote(codigoBarraString);
             inventarioLotes.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
             this.dispose();
         }

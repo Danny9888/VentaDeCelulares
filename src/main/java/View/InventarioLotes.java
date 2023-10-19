@@ -4,9 +4,12 @@
  */
 package View;
 
+import Controller.CarroVenta;
 import Controller.CelularController;
 
+import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
+import java.awt.event.KeyEvent;
 import java.util.List;
 
 /**
@@ -19,6 +22,7 @@ public class InventarioLotes extends javax.swing.JFrame {
 
     public InventarioLotes() {
         initComponents();
+        tablaInventarioCelularesLotes.getInputMap(JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT).put(KeyStroke.getKeyStroke(KeyEvent.VK_ENTER, 0), "none");
     }
 
     /**
@@ -32,17 +36,17 @@ public class InventarioLotes extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tablaInventarioCelulares = new javax.swing.JTable();
+        tablaInventarioCelularesLotes = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setBackground(new java.awt.Color(17, 38, 53));
 
-        tablaInventarioCelulares.setBackground(new java.awt.Color(204, 204, 204));
-        tablaInventarioCelulares.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        tablaInventarioCelulares.setForeground(new java.awt.Color(0, 0, 0));
-        tablaInventarioCelulares.setModel(new javax.swing.table.DefaultTableModel(
+        tablaInventarioCelularesLotes.setBackground(new java.awt.Color(204, 204, 204));
+        tablaInventarioCelularesLotes.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        tablaInventarioCelularesLotes.setForeground(new java.awt.Color(0, 0, 0));
+        tablaInventarioCelularesLotes.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -50,16 +54,16 @@ public class InventarioLotes extends javax.swing.JFrame {
                 "IMEI", "MARCA", "MODELO", "PLAN", "PRECIO"
             }
         ));
-        tablaInventarioCelulares.setName(""); // NOI18N
-        tablaInventarioCelulares.setRowHeight(35);
-        tablaInventarioCelulares.setSelectionBackground(new java.awt.Color(102, 102, 102));
-        tablaInventarioCelulares.setSelectionForeground(new java.awt.Color(255, 255, 255));
-        tablaInventarioCelulares.addKeyListener(new java.awt.event.KeyAdapter() {
+        tablaInventarioCelularesLotes.setName(""); // NOI18N
+        tablaInventarioCelularesLotes.setRowHeight(35);
+        tablaInventarioCelularesLotes.setSelectionBackground(new java.awt.Color(102, 102, 102));
+        tablaInventarioCelularesLotes.setSelectionForeground(new java.awt.Color(255, 255, 255));
+        tablaInventarioCelularesLotes.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
-                tablaInventarioCelularesKeyReleased(evt);
+                tablaInventarioCelularesLotesKeyReleased(evt);
             }
         });
-        jScrollPane1.setViewportView(tablaInventarioCelulares);
+        jScrollPane1.setViewportView(tablaInventarioCelularesLotes);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -83,8 +87,8 @@ public class InventarioLotes extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void tablaInventarioCelularesKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tablaInventarioCelularesKeyReleased
-
+    private void tablaInventarioCelularesLotesKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tablaInventarioCelularesKeyReleased
+        llenarTabla();
     }//GEN-LAST:event_tablaInventarioCelularesKeyReleased
 
     /**
@@ -132,7 +136,7 @@ public class InventarioLotes extends javax.swing.JFrame {
     public void mostrarCeuluaresPorLote(String codigoBarra){
         cl = new CelularController();
         List<Object[]> celulares = cl.listarCelularesPorLote(codigoBarra);
-        DefaultTableModel tablaListaCelulares = (DefaultTableModel) tablaInventarioCelulares.getModel();
+        DefaultTableModel tablaListaCelulares = (DefaultTableModel) tablaInventarioCelularesLotes.getModel();
         for (Object[] celular : celulares){
             String IMEI = (String) celular[0];
             String marca = (String) celular[1];
@@ -144,10 +148,30 @@ public class InventarioLotes extends javax.swing.JFrame {
 
     }
 
+    public String obtenerImei(){
+        int selectedRow = tablaInventarioCelularesLotes.getSelectedRow();
+        Object imei = tablaInventarioCelularesLotes.getValueAt(selectedRow, 0);
+        String imeiString = (String) imei;
+        System.out.println(imeiString);
+        return imeiString;
+    }
+
+    public void llenarTabla(){
+        Venta venta = Venta.getInstance();
+        CarroVenta carroVenta = new CarroVenta();
+        Object[] celular = carroVenta.agregarProducto(obtenerImei());
+        Integer cantidad = 1;
+        String marca = (String) celular[0];
+        String modelo = (String) celular[1];
+        double precioVenta = (double) celular[2];
+        DefaultTableModel tabla = (DefaultTableModel) venta.tablaListaProductos.getModel();
+        tabla.addRow(new Object[]{cantidad, marca, modelo, precioVenta});
+    }
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable tablaInventarioCelulares;
+    private javax.swing.JTable tablaInventarioCelularesLotes;
     // End of variables declaration//GEN-END:variables
 }

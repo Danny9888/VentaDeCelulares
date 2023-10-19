@@ -16,7 +16,6 @@ public class Pantalla {
         ventana.setLocationRelativeTo(null);
         ventana.setResizable(false);
         ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
     }
 
     public static Pantalla getInstance(){

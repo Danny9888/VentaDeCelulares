@@ -20,6 +20,12 @@ public class Venta extends javax.swing.JFrame {
     IconoMenu iconoMenu = new IconoMenu();
     Icono icono = new Icono();
     MenuPrincipal menuPrincipal;
+
+    private  static final Venta venta = new Venta();
+
+    public static Venta getInstance(){
+        return venta;
+    }
     
     public Venta() {
         initComponents();
@@ -338,6 +344,6 @@ public class Venta extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTable tablaListaProductos;
+    public javax.swing.JTable tablaListaProductos;
     // End of variables declaration//GEN-END:variables
 }

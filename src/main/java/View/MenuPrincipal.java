@@ -237,9 +237,9 @@ public class MenuPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_opcionVentaMouseEntered
 
     private void opcionVentaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_opcionVentaMouseClicked
-        Pantalla pantalla = Pantalla.getInstance();
-        Venta pantallaVenta = new Venta();
-        pantalla.abrirPantalla(pantallaVenta = new Venta(),1100,700);
+        Pantalla pantallaV = Pantalla.getInstance();
+        Venta venta = Venta.getInstance();
+        pantallaV.abrirPantalla(venta, 1100,700);
         this.dispose();
     }//GEN-LAST:event_opcionVentaMouseClicked
 
