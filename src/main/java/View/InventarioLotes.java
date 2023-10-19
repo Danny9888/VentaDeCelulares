@@ -172,9 +172,8 @@ public class InventarioLotes extends javax.swing.JFrame {
     }
 
 
-    // Variables declaration - do not modify//GEN-BEGIN:variables
+
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tablaInventarioCelularesLotes;
-    // End of variables declaration//GEN-END:variables
 }

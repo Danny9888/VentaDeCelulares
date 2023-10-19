@@ -76,7 +76,7 @@ public class IngresoCelular extends javax.swing.JFrame {
         jLabel1.setForeground(new java.awt.Color(190, 208, 235));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("INGRESE DATOS DEL CELULAR");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 30, 1100, 50));
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 30, 680, 50));
 
         campoPlan.setForeground(new java.awt.Color(0, 0, 0));
         campoPlan.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "PREPAGO", "POSTPAGO" }));
@@ -296,12 +296,13 @@ public class IngresoCelular extends javax.swing.JFrame {
         jPanel1.add(campoCodigoBarra, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 120, 260, 40));
         jPanel1.add(jSeparator11, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 460, 280, 10));
 
+        botonAtras.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         botonAtras.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 botonAtrasMouseClicked(evt);
             }
         });
-        jPanel1.add(botonAtras, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 30, 70, 60));
+        jPanel1.add(botonAtras, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 30, 90, 80));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);

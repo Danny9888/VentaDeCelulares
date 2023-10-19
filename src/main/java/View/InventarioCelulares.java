@@ -79,7 +79,9 @@ public class InventarioCelulares extends javax.swing.JFrame {
         filtroBuscar.setForeground(new java.awt.Color(190, 208, 235));
         filtroBuscar.setBorder(null);
 
+        botonBuscar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         botonBuscar.setText("BUSCAR");
+        botonBuscar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         botonBuscar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 botonBuscarMouseClicked(evt);
