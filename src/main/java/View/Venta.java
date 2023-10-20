@@ -63,7 +63,7 @@ public class Venta extends javax.swing.JFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         tablaListaProductos = new javax.swing.JTable();
         textTotal = new javax.swing.JLabel();
-        textField1 = new java.awt.TextField();
+        campoTotal = new java.awt.TextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -220,8 +220,12 @@ public class Venta extends javax.swing.JFrame {
         textTotal.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         textTotal.setText("TOTAL");
 
-        textField1.setBackground(new java.awt.Color(102, 255, 102));
-        textField1.addActionListener(new java.awt.event.ActionListener() {
+        campoTotal.setBackground(new java.awt.Color(102, 255, 102));
+        campoTotal.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
+        campoTotal.setEditable(false);
+        campoTotal.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        campoTotal.setText("Q0.00");
+        campoTotal.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 textField1ActionPerformed(evt);
             }
@@ -238,7 +242,7 @@ public class Venta extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(textTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(textField1, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(campoTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(47, 47, 47)
                         .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 671, Short.MAX_VALUE)
@@ -261,7 +265,7 @@ public class Venta extends javax.swing.JFrame {
                             .addComponent(textTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(38, 38, 38)
-                        .addComponent(textField1, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(campoTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -349,7 +353,7 @@ public class Venta extends javax.swing.JFrame {
             }
         });
     }
-    // Variables declaration - do not modify//GEN-BEGIN:variables
+
     private javax.swing.JLabel botonAtras;
     private javax.swing.JLabel iconoCelular;
     private javax.swing.JLabel iconoRecarga;
@@ -367,7 +371,6 @@ public class Venta extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel8;
     private javax.swing.JScrollPane jScrollPane2;
     protected javax.swing.JTable tablaListaProductos;
-    private java.awt.TextField textField1;
+    protected java.awt.TextField campoTotal;
     private javax.swing.JLabel textTotal;
-    // End of variables declaration//GEN-END:variables
 }

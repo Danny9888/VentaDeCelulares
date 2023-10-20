@@ -169,6 +169,8 @@ public class InventarioLotes extends javax.swing.JFrame {
         double precioVenta = (double) celular[2];
         DefaultTableModel tabla = (DefaultTableModel) venta.tablaListaProductos.getModel();
         tabla.addRow(new Object[]{cantidad, marca, modelo, precioVenta});
+        String total = carroVenta.sumarTotal(venta.tablaListaProductos);
+        venta.campoTotal.setText("Q"+total);
     }
 
 

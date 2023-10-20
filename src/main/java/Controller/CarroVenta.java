@@ -4,6 +4,9 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.NoResultException;
 import util.JpaUtil;
 
+import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
+
 
 public class CarroVenta {
     EntityManager em = JpaUtil.getEntityManager();
@@ -21,6 +24,22 @@ public class CarroVenta {
         }finally {
             em.close();
         }
+    }
+
+    public String sumarTotal(JTable tabla){
+        int columna = 3;
+        double total = 0;
+        DefaultTableModel model = (DefaultTableModel) tabla.getModel();
+        int filas = model.getRowCount();
+        System.out.println("Filas, " + filas);
+        for(int i = 0 ; i < filas ; i++){
+            Object valor = model.getValueAt(i, columna);
+                if (valor instanceof Number) {
+                    total += ((Number) valor).intValue();
+                }
+        }
+        String totalString = String.valueOf(total);
+        return totalString;
     }
 
 }
