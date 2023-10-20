@@ -147,7 +147,7 @@ public class InventarioCelulares extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void botonBuscarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonBuscarMouseClicked
-        ingresarDatosTabla();
+        cargarInventario();
     }//GEN-LAST:event_botonBuscarMouseClicked
 
     private void tablaInventarioCelularesKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tablaInventarioCelularesKeyReleased
@@ -199,7 +199,7 @@ public class InventarioCelulares extends javax.swing.JFrame {
         });
     }
 
-    public void ingresarDatosTabla(){
+    public void cargarInventario(){
         if (filtroBuscar.getText().isBlank()){
             JOptionPane.showMessageDialog(null, "Ingrese el nombre del celular que desea buscar");
         }else{
@@ -220,7 +220,6 @@ public class InventarioCelulares extends javax.swing.JFrame {
         }
 
     }
-
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

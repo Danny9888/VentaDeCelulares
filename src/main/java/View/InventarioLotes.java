@@ -91,6 +91,7 @@ public class InventarioLotes extends javax.swing.JFrame {
         if (evt.getKeyCode() == KeyEvent.VK_ENTER){
             this.dispose();
             llenarTabla();
+            actualizarInventario();
         }
     }//GEN-LAST:event_tablaInventarioCelularesKeyReleased
 
@@ -174,6 +175,15 @@ public class InventarioLotes extends javax.swing.JFrame {
     }
 
 
+    public void actualizarInventario(){
+        cl = new CelularController();
+        int filaSeleccionada = tablaInventarioCelularesLotes.getSelectedRow();
+        String imei = (String) tablaInventarioCelularesLotes.getValueAt(filaSeleccionada, 0) ;
+        System.out.println(imei);
+        cl.actualizarInventario(imei, false);
+        InventarioCelulares inv = InventarioCelulares.getInstance();
+        inv.cargarInventario();
+    }
 
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;

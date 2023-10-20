@@ -72,4 +72,22 @@ public class CelularController {
         }
         return null;
     }
+
+    public void actualizarInventario(String imei, boolean disponible){
+        try{
+            Celular celular = new Celular();
+            em.getTransaction().begin();
+            celular.setIMEI(imei);
+            System.out.println("celular" + celular.getIMEI());
+            celular = em.find(Celular.class, celular.getIMEI());
+            celular.setDisponible(disponible);
+            em.merge(celular);
+            em.getTransaction().commit();
+        }catch (Exception e){
+            em.getTransaction().rollback();
+        }finally {
+            em.close();
+        }
+    }
+
 }
