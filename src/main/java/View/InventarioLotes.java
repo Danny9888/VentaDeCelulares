@@ -88,7 +88,10 @@ public class InventarioLotes extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void tablaInventarioCelularesLotesKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tablaInventarioCelularesKeyReleased
-        llenarTabla();
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER){
+            this.dispose();
+            llenarTabla();
+        }
     }//GEN-LAST:event_tablaInventarioCelularesKeyReleased
 
     /**
@@ -169,9 +172,8 @@ public class InventarioLotes extends javax.swing.JFrame {
     }
 
 
-    // Variables declaration - do not modify//GEN-BEGIN:variables
+
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tablaInventarioCelularesLotes;
-    // End of variables declaration//GEN-END:variables
 }
