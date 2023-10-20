@@ -505,7 +505,7 @@ public class IngresoCelular extends javax.swing.JFrame {
             campoMarca.setText(marca);
             campoModelo.setText(modelo);
             campoColor.setSelectedItem(color);
-            /*campoPlan.setSelectedItem(plan);*/
+            campoPlan.setSelectedItem(plan);
             campoMarca.setEnabled(false);
             campoModelo.setEnabled(false);
             campoColor.setEnabled(false);
