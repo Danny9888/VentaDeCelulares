@@ -20,6 +20,12 @@ public class InventarioCelulares extends javax.swing.JFrame {
     Pantalla pantalla = Pantalla.getInstance();
     InventarioLotes inventarioLotes;
 
+    private static final InventarioCelulares inventarioCelulares = new InventarioCelulares();
+
+    public static InventarioCelulares getInstance(){
+        return inventarioCelulares;
+    }
+
 
     public InventarioCelulares() {
         initComponents();

@@ -304,7 +304,7 @@ public class Venta extends javax.swing.JFrame {
     }//GEN-LAST:event_inventarioRecargaMouseExited
 
     private void inventarioCelularMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_inventarioCelularMouseClicked
-        InventarioCelulares pantallaInventarioCelular = new InventarioCelulares();
+        InventarioCelulares pantallaInventarioCelular = InventarioCelulares.getInstance();
         pantalla.abrirPantalla(pantallaInventarioCelular,800,500);
         pantallaInventarioCelular.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
     }//GEN-LAST:event_inventarioCelularMouseClicked
