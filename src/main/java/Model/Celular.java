@@ -117,4 +117,12 @@ public class Celular {
     public void setIMEI(String IMEI) {
         this.IMEI = IMEI;
     }
+
+    public boolean isDisponible() {
+        return disponible;
+    }
+
+    public void setDisponible(boolean disponible) {
+        this.disponible = disponible;
+    }
 }
