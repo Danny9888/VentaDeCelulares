@@ -30,8 +30,8 @@ public class Venta extends javax.swing.JFrame {
     public Venta() {
         initComponents();
         Font font = new Font("Arial", Font.BOLD, 15);
-        IconoMenu.setImageToLabel(iconoCelular, "src/main/java/imagenes/iconoSmartphone.png");
-        IconoMenu.setImageToLabel(iconoRecarga, "src/main/java/imagenes/iconoRecarga.png");
+        iconoMenu.setImageToLabel(iconoCelular, "src/main/java/imagenes/iconoSmartphone.png");
+        iconoMenu.setImageToLabel(iconoRecarga, "src/main/java/imagenes/iconoRecarga.png");
         icono.setImageToLabel(botonAtras,"src/main/java/imagenes/iconoAtras.png");
         tablaListaProductos.getTableHeader().setFont(font);
     }
@@ -354,6 +354,7 @@ public class Venta extends javax.swing.JFrame {
         });
     }
 
+    // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel botonAtras;
     private javax.swing.JLabel iconoCelular;
     private javax.swing.JLabel iconoRecarga;
@@ -373,4 +374,5 @@ public class Venta extends javax.swing.JFrame {
     protected javax.swing.JTable tablaListaProductos;
     protected java.awt.TextField campoTotal;
     private javax.swing.JLabel textTotal;
+    // End of variables declaration//GEN-END:variables
 }
