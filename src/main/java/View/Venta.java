@@ -16,6 +16,7 @@ import java.awt.*;
 public class Venta extends javax.swing.JFrame {
 
     Pantalla pantalla = Pantalla.getInstance();
+    Recargas recargas = Recargas.getInstance();
 
     IconoMenu iconoMenu = new IconoMenu();
     Icono icono = new Icono();
@@ -153,6 +154,9 @@ public class Venta extends javax.swing.JFrame {
         inventarioRecarga.setForeground(new java.awt.Color(190, 208, 235));
         inventarioRecarga.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         inventarioRecarga.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                inventarioRecargaMouseClicked(evt);
+            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 inventarioRecargaMouseEntered(evt);
             }
@@ -326,6 +330,10 @@ public class Venta extends javax.swing.JFrame {
     private void campoTotalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoTotalActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_campoTotalActionPerformed
+
+    private void inventarioRecargaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_inventarioRecargaMouseClicked
+        pantalla.abrirPantalla(recargas, 800,500);
+    }//GEN-LAST:event_inventarioRecargaMouseClicked
 
     /**
      * @param args the command line arguments
