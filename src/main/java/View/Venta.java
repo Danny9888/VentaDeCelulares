@@ -209,7 +209,15 @@ public class Venta extends javax.swing.JFrame {
             new String [] {
                 "CANTIDAD", "PRODUCTO", "DESCRIPCION", "PRECIO"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         tablaListaProductos.setRowHeight(35);
         tablaListaProductos.setSelectionBackground(new java.awt.Color(102, 102, 102));
         tablaListaProductos.setSelectionForeground(new java.awt.Color(255, 255, 255));
@@ -227,7 +235,7 @@ public class Venta extends javax.swing.JFrame {
         campoTotal.setText("Q0.00");
         campoTotal.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                textField1ActionPerformed(evt);
+                campoTotalActionPerformed(evt);
             }
         });
 
@@ -315,9 +323,9 @@ public class Venta extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_botonAtrasMouseClicked
 
-    private void textField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textField1ActionPerformed
+    private void campoTotalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoTotalActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_textField1ActionPerformed
+    }//GEN-LAST:event_campoTotalActionPerformed
 
     /**
      * @param args the command line arguments
@@ -356,6 +364,7 @@ public class Venta extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel botonAtras;
+    protected java.awt.TextField campoTotal;
     private javax.swing.JLabel iconoCelular;
     private javax.swing.JLabel iconoRecarga;
     private javax.swing.JPanel inventarioCelular;
@@ -372,7 +381,6 @@ public class Venta extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel8;
     private javax.swing.JScrollPane jScrollPane2;
     protected javax.swing.JTable tablaListaProductos;
-    protected java.awt.TextField campoTotal;
     private javax.swing.JLabel textTotal;
     // End of variables declaration//GEN-END:variables
 }

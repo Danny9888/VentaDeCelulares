@@ -53,7 +53,15 @@ public class InventarioLotes extends javax.swing.JFrame {
             new String [] {
                 "IMEI", "MARCA", "MODELO", "PLAN", "PRECIO"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         tablaInventarioCelularesLotes.setName(""); // NOI18N
         tablaInventarioCelularesLotes.setRowHeight(35);
         tablaInventarioCelularesLotes.setSelectionBackground(new java.awt.Color(102, 102, 102));

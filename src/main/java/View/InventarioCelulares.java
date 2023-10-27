@@ -63,7 +63,15 @@ public class InventarioCelulares extends javax.swing.JFrame {
             new String [] {
                 "INVENTARIO", "CODIGO DE BARRA", "MARCA", "MODELO", "PLAN", "PRECIO"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         tablaInventarioCelulares.setName(""); // NOI18N
         tablaInventarioCelulares.setRowHeight(35);
         tablaInventarioCelulares.setSelectionBackground(new java.awt.Color(102, 102, 102));

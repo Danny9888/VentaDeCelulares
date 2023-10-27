@@ -33,6 +33,7 @@ View\Plan.class
 View\InventarioLotes.class
 View\IngresoCelular.class
 View\InventarioCelulares$1.class
+View\InventarioCelulares$4.class
 View\Login$3.class
 View\IngresoCelular$16.class
 View\IngresoCelular$14.class
