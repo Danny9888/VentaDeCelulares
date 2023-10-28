@@ -4,6 +4,10 @@
         <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
         <class>Model.Plan</class>
         <class>Model.Celular</class>
+        <class>Model.Recarga</class>
+        <class>Model.Saldo</class>
+        <class>Model.Mensajes</class>
+        <class>Model.Internet</class>
         <exclude-unlisted-classes>true</exclude-unlisted-classes>
         <properties>
             <property name="jakarta.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/venta_celulares?serverTimezone=America/Guatemala"/>

@@ -19,7 +19,6 @@ View\IngresoCelular$7.class
 View\IngresoCelular$20.class
 View\IngresoCelular$12.class
 View\IngresoCelular$4.class
-View\Plan$2.class
 View\Venta.class
 View\IngresoCelular$5.class
 View\MenuPrincipal$4.class
@@ -28,8 +27,6 @@ com\mycompany\venta\Main.class
 View\InventarioCelulares.class
 View\Venta$1.class
 View\IngresoCelular$8.class
-View\Plan$3.class
-View\Plan.class
 View\InventarioLotes.class
 View\IngresoCelular.class
 View\InventarioCelulares$1.class
@@ -38,7 +35,6 @@ View\Login$3.class
 View\IngresoCelular$16.class
 View\IngresoCelular$14.class
 View\MenuPrincipal$3.class
-View\Plan$1.class
 View\IngresoCelular$6.class
 View\IngresoCelular$17.class
 View\InventarioLotes$1.class
