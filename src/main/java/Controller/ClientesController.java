@@ -4,51 +4,39 @@ import Model.Cliente;
 import View.Clientes;
 
 import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class ClientesController {
 
-    private Cliente modelo;
     private Clientes vista;
 
-    public ClientesController(Cliente modelo, Clientes vista) {
-        this.modelo = modelo;
+    public ClientesController(Clientes vista) {
         this.vista = vista;
-
-        initController();
-    }
-
-    private void initController() {
-        vista.getJButton1().addActionListener(e -> guardarCliente());
+        this.vista.getGuardarButton().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                guardarCliente();
+            }
+        });
     }
 
     private void guardarCliente() {
-        try {
-            String dpi = vista.getJTextField1().getText();
-            String nombre = vista.getJTextField9().getText();
-            String apellido = vista.getJTextField2().getText();
-            String nit = vista.getJTextField8().getText();
-            String telefono = vista.getJTextField7().getText();
-            String direccion = vista.getJTextField7().getText();
+        String nombre = vista.getTextNombre().getText();
+        String apellido = vista.getTextApellido().getText();
+        String nit = vista.getTextNit().getText();
+        String telefono = vista.getTextTelefono().getText();
+        String direccion = vista.getTextDireccion().getText();
+        String dpi = vista.getTextDpi().getText();
 
-            modelo.setDpi(dpi);
-            modelo.setNombre(nombre);
-            modelo.setApellido(apellido);
-            modelo.setNit(nit);
-            modelo.setTelefono(telefono);
-            modelo.setDireccion(direccion);
-
-
-
-            JOptionPane.showMessageDialog(null, "Cliente guardado con éxito");
-
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "Error al guardar el cliente: " + e.getMessage());
-        }
+        Cliente cliente = new Cliente(nombre, apellido, nit, telefono, direccion, dpi);
+        System.out.println(cliente); // Por ahora, simplemente imprimimos el cliente creado.
+        // Puedes reemplazar esta línea por la lógica para guardar el cliente en la base de datos.
     }
 
-
-    public void setModelAndView(Cliente modelo, Clientes vista) {
-        this.modelo = modelo;
-        this.vista = vista;
+    public static void main(String[] args) {
+        Clientes vista = new Clientes();
+        ClientesController controlador = new ClientesController(vista);
     }
 }
+
