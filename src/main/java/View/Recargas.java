@@ -11,6 +11,8 @@ import javax.swing.table.DefaultTableModel;
 import java.awt.event.KeyEvent;
 import java.util.List;
 
+import Controller.InternetController;
+import Controller.MensajesController;
 import Controller.SaldoController;
 import tools.Pantalla;
 
@@ -202,6 +204,7 @@ public class Recargas extends javax.swing.JFrame {
 
     private void llenarTabla(JTable tabla, String filtro){
         DefaultTableModel model = (DefaultTableModel) tabla.getModel();
+        model.setRowCount(0);
         if (filtro.toUpperCase().equals("SALDO")){
             SaldoController sl = new SaldoController();
             List<Object[]> recargas =  sl.listarRecargas();
@@ -211,7 +214,26 @@ public class Recargas extends javax.swing.JFrame {
                 double precioVenta = (double) recarga[2];
                 model.addRow(new Object[]{plan,descripcion,precioVenta});
             }
+        }else if (filtro.toUpperCase().equals("MENSAJES")){
+            MensajesController ms = new MensajesController();
+            List<Object[]> recargas =  ms.listarRecargas();
+            for (Object[] recarga : recargas){
+                String plan = (String) recarga[0];
+                String descripcion =(String)  recarga[1];
+                double precioVenta = (double) recarga[2];
+                model.addRow(new Object[]{plan,descripcion,precioVenta});
+            }
+        }else if (filtro.toUpperCase().equals("INTERNET")){
+            InternetController inter = new InternetController();
+            List<Object[]> recargas =  inter.listarRecargas();
+            for (Object[] recarga : recargas){
+                String plan = (String) recarga[0];
+                String descripcion =(String)  recarga[1];
+                double precioVenta = (double) recarga[2];
+                model.addRow(new Object[]{plan,descripcion,precioVenta});
+            }
         }
+
     }
 
 
