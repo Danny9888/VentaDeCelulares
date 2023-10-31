@@ -4,6 +4,7 @@
  */
 package View;
 
+import Controller.CarroVenta;
 import Controller.CelularController;
 
 import javax.swing.*;
@@ -18,7 +19,7 @@ import tools.Pantalla;
  */
 public class InventarioCelulares extends javax.swing.JFrame {
     Pantalla pantalla = Pantalla.getInstance();
-    InventarioLotes inventarioLotes;
+    InventarioLotes inventarioLotes = InventarioLotes.getInstance();
 
     private static final InventarioCelulares inventarioCelulares = new InventarioCelulares();
 
@@ -160,13 +161,20 @@ public class InventarioCelulares extends javax.swing.JFrame {
 
     private void tablaInventarioCelularesKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tablaInventarioCelularesKeyReleased
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            Venta venta = Venta.getInstance();
+            InventarioLotes inv = InventarioLotes.getInstance();
+            CarroVenta cv = CarroVenta.getInstance();
             int selectedRow = tablaInventarioCelulares.getSelectedRow();
             Object codigoBarra = tablaInventarioCelulares.getValueAt(selectedRow, 1);
             String codigoBarraString = codigoBarra.toString();
             System.out.println(codigoBarra);
-            pantalla.abrirPantalla(inventarioLotes = new InventarioLotes(), 600, 350);
-            inventarioLotes.mostrarCeuluaresPorLote(codigoBarraString);
-            inventarioLotes.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+            pantalla.abrirPantalla(inv, 600, 350);
+            inv.mostrarCeuluaresPorLote(codigoBarraString);
+            int fila = venta.tablaListaProductos.getRowCount();
+            if (fila > 0 ){
+                cv.disminuirInventario();
+            }
+            inv.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
             this.dispose();
         }
     }//GEN-LAST:event_tablaInventarioCelularesKeyReleased

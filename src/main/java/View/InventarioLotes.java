@@ -19,6 +19,12 @@ import java.util.List;
 public class InventarioLotes extends javax.swing.JFrame {
     CelularController cl;
 
+    private static final InventarioLotes inv = new InventarioLotes();
+
+    public static InventarioLotes getInstance(){
+        return inv;
+    }
+
 
     public InventarioLotes() {
         initComponents();
@@ -51,11 +57,11 @@ public class InventarioLotes extends javax.swing.JFrame {
 
             },
             new String [] {
-                "IMEI", "MARCA", "MODELO", "PLAN", "PRECIO"
+                "INVENTARIO", "IMEI", "MARCA", "MODELO", "PLAN", "PRECIO"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false
+                true, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -97,9 +103,9 @@ public class InventarioLotes extends javax.swing.JFrame {
 
     private void tablaInventarioCelularesLotesKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tablaInventarioCelularesKeyReleased
         if (evt.getKeyCode() == KeyEvent.VK_ENTER){
+            CarroVenta cv = CarroVenta.getInstance();
+            obtenerItemSeleccionado();
             this.dispose();
-            llenarTabla();
-            actualizarInventario();
         }
     }//GEN-LAST:event_tablaInventarioCelularesKeyReleased
 
@@ -145,52 +151,44 @@ public class InventarioLotes extends javax.swing.JFrame {
         });
     }
 
+    public void obtenerItemSeleccionado(){
+        CarroVenta cv = CarroVenta.getInstance();
+        Venta venta = Venta.getInstance();
+        JTable tablaVenta = venta.tablaListaProductos;
+        int filaDeseada = tablaInventarioCelularesLotes.getSelectedRow();
+        DefaultTableModel model = (DefaultTableModel) tablaInventarioCelularesLotes.getModel();
+        int columnCount = model.getColumnCount();
+        Object[] fila = new Object[columnCount];
+        for (int i = 0; i < columnCount; i++) {
+            fila[i] = model.getValueAt(filaDeseada, i);
+        }
+        cv.agregarProducto(tablaVenta, fila);
+    }
+
     public void mostrarCeuluaresPorLote(String codigoBarra){
         cl = new CelularController();
+        CarroVenta cv = CarroVenta.getInstance();
         List<Object[]> celulares = cl.listarCelularesPorLote(codigoBarra);
         DefaultTableModel tablaListaCelulares = (DefaultTableModel) tablaInventarioCelularesLotes.getModel();
+        tablaListaCelulares.setRowCount(0);
         for (Object[] celular : celulares){
+            Integer cantidad = 1;
             String IMEI = (String) celular[0];
             String marca = (String) celular[1];
             String modelo = (String) celular[2];
             String plan = (String) celular[3];
             double precioVenta = (double) celular[4];
-            tablaListaCelulares.addRow(new Object[]{IMEI, marca, modelo, plan, precioVenta});
+            tablaListaCelulares.addRow(new Object[]{cantidad, IMEI, marca, modelo, plan, precioVenta});
         }
 
     }
 
-    public String obtenerImei(){
-        int selectedRow = tablaInventarioCelularesLotes.getSelectedRow();
-        Object imei = tablaInventarioCelularesLotes.getValueAt(selectedRow, 0);
-        String imeiString = (String) imei;
-        System.out.println(imeiString);
-        return imeiString;
+    public JTable getTablaInventarioCelularesLotes() {
+        return tablaInventarioCelularesLotes;
     }
 
-    public void llenarTabla(){
-        Venta venta = Venta.getInstance();
-        CarroVenta carroVenta = new CarroVenta();
-        Object[] celular = carroVenta.agregarProducto(obtenerImei());
-        Integer cantidad = 1;
-        String marca = (String) celular[0];
-        String modelo = (String) celular[1];
-        double precioVenta = (double) celular[2];
-        DefaultTableModel tabla = (DefaultTableModel) venta.tablaListaProductos.getModel();
-        tabla.addRow(new Object[]{cantidad, marca, modelo, precioVenta});
-        String total = carroVenta.sumarTotal(venta.tablaListaProductos);
-        venta.campoTotal.setText("Q"+total);
-    }
-
-
-    public void actualizarInventario(){
-        cl = new CelularController();
-        int filaSeleccionada = tablaInventarioCelularesLotes.getSelectedRow();
-        String imei = (String) tablaInventarioCelularesLotes.getValueAt(filaSeleccionada, 0) ;
-        System.out.println(imei);
-        cl.actualizarInventario(imei, false);
-        InventarioCelulares inv = InventarioCelulares.getInstance();
-        inv.cargarInventario();
+    public void setTablaInventarioCelularesLotes(JTable tablaInventarioCelularesLotes) {
+        this.tablaInventarioCelularesLotes = tablaInventarioCelularesLotes;
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
