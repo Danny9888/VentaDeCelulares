@@ -12,7 +12,7 @@ public class MensajesController implements RecargaController{
     public List<Object[]> listarRecargas() {
         List<Object[]> mensajes;
         try {
-            mensajes = em.createQuery("SELECT m.plan, m.descripcion, m.precio FROM Mensajes m", Object[].class).getResultList();
+            mensajes = em.createQuery("SELECT m.id ,m.plan, m.descripcion, m.precio FROM Mensajes m", Object[].class).getResultList();
             return mensajes;
         }catch (NoResultException e){
             return null;

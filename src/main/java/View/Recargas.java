@@ -4,16 +4,13 @@
  */
 package View;
 
-import Controller.CelularController;
+import Controller.*;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.event.KeyEvent;
 import java.util.List;
 
-import Controller.InternetController;
-import Controller.MensajesController;
-import Controller.SaldoController;
 import tools.Pantalla;
 
 /**
@@ -62,11 +59,11 @@ public class Recargas extends javax.swing.JFrame {
 
             },
             new String [] {
-                "PLAN", "DESCRIPCION", "PRECIO"
+                "CODIGO", "PLAN", "DESCRIPCION", "PRECIO"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false
+                true, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -162,6 +159,11 @@ public class Recargas extends javax.swing.JFrame {
     }//GEN-LAST:event_botonBuscarMouseClicked
 
     private void tablaRecargasKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tablaRecargasKeyReleased
+        if(evt.getKeyCode()  == KeyEvent.VK_ENTER){
+            obtenerItemSeleccionado();
+
+            this.dispose();
+        }
     }//GEN-LAST:event_tablaRecargasKeyReleased
 
     /**
@@ -204,38 +206,57 @@ public class Recargas extends javax.swing.JFrame {
 
     private void llenarTabla(JTable tabla, String filtro){
         DefaultTableModel model = (DefaultTableModel) tabla.getModel();
+        List<Object[]> recargas = null;
         model.setRowCount(0);
         if (filtro.toUpperCase().equals("SALDO")){
             SaldoController sl = new SaldoController();
-            List<Object[]> recargas =  sl.listarRecargas();
+             recargas=  sl.listarRecargas();
             for (Object[] recarga : recargas){
-                String plan = (String) recarga[0];
-                String descripcion =(String)  recarga[1];
-                double precioVenta = (double) recarga[2];
-                model.addRow(new Object[]{plan,descripcion,precioVenta});
+                Integer id = (Integer) recarga[0];
+                String plan = (String) recarga[1];
+                String descripcion =(String)  recarga[2];
+                double precioVenta = (double) recarga[3];
+                model.addRow(new Object[]{id, plan,descripcion,precioVenta});
             }
         }else if (filtro.toUpperCase().equals("MENSAJES")){
             MensajesController ms = new MensajesController();
-            List<Object[]> recargas =  ms.listarRecargas();
+            recargas =  ms.listarRecargas();
             for (Object[] recarga : recargas){
-                String plan = (String) recarga[0];
-                String descripcion =(String)  recarga[1];
-                double precioVenta = (double) recarga[2];
-                model.addRow(new Object[]{plan,descripcion,precioVenta});
+                String id = (String) recarga[0];
+                String plan = (String) recarga[1];
+                String descripcion =(String)  recarga[2];
+                double precioVenta = (double) recarga[3];
+                model.addRow(new Object[]{id, plan,descripcion,precioVenta});
             }
         }else if (filtro.toUpperCase().equals("INTERNET")){
             InternetController inter = new InternetController();
-            List<Object[]> recargas =  inter.listarRecargas();
+            recargas =  inter.listarRecargas();
             for (Object[] recarga : recargas){
-                String plan = (String) recarga[0];
-                String descripcion =(String)  recarga[1];
-                double precioVenta = (double) recarga[2];
-                model.addRow(new Object[]{plan,descripcion,precioVenta});
+                String id = (String) recarga[0];
+                String plan = (String) recarga[1];
+                String descripcion =(String)  recarga[2];
+                double precioVenta = (double) recarga[3];
+                model.addRow(new Object[]{id,plan,descripcion,precioVenta});
             }
         }else {
             JOptionPane.showInputDialog(null, "No se encontraron resultados");
         }
+    }
 
+    public void obtenerItemSeleccionado(){
+        CarroVenta cv = CarroVenta.getInstance();
+        Venta venta = Venta.getInstance();
+        JTable tablaVenta = venta.getTablaListaProductos();
+        int filaDeseada = tablaRecargas.getSelectedRow();
+        DefaultTableModel model = (DefaultTableModel) tablaRecargas.getModel();
+        int columnas = model.getColumnCount();
+        Object[] fila = new Object[columnas];
+        fila[0] = 1;
+        for (int i = 1; i < columnas; i++) {
+            fila[i] = model.getValueAt(filaDeseada, i);
+        }
+        cv.agregarRecarga(tablaVenta, fila);
+        cv.sumarTotal();
     }
 
 

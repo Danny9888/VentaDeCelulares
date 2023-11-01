@@ -3,7 +3,6 @@ package Controller;
 import View.InventarioLotes;
 import View.Venta;
 import jakarta.persistence.EntityManager;
-import jakarta.persistence.NoResultException;
 import util.JpaUtil;
 
 import javax.swing.*;
@@ -31,7 +30,7 @@ public class CarroVenta {
         return cv;
     }
 
-    public void agregarProducto(JTable tabla, Object[] obj){
+    public void agregarCelular(JTable tabla, Object[] obj){
         DefaultTableModel model = (DefaultTableModel) tabla.getModel();
         int cantidad = (int) obj[0];
         String imei = (String) obj[1];
@@ -40,7 +39,17 @@ public class CarroVenta {
         double precioVenta = (double) obj[5];
         model.addRow(new Object[]{cantidad, producto, descripcion, precioVenta});
         listaDeProductos.add(imei);
+    }
 
+    public void agregarRecarga(JTable tabla, Object[] obj){
+        DefaultTableModel model = (DefaultTableModel) tabla.getModel();
+        Integer cantidad = 1;
+        String id = String.valueOf(obj[0]);
+        String producto = (String) obj[1];
+        String descripcion = (String) obj[2];
+        double precioVenta = (double) obj[3];
+        model.addRow(new Object[]{cantidad, producto, descripcion, precioVenta});
+        listaDeProductos.add(id);
     }
 
     public void disminuirInventario(){

@@ -154,6 +154,7 @@ public class InventarioLotes extends javax.swing.JFrame {
     public void obtenerItemSeleccionado(){
         CarroVenta cv = CarroVenta.getInstance();
         Venta venta = Venta.getInstance();
+        JTable tablaVenta = venta.getTablaListaProductos();
         int filaDeseada = tablaInventarioCelularesLotes.getSelectedRow();
         int columna = 0;
         DefaultTableModel model = (DefaultTableModel) tablaInventarioCelularesLotes.getModel();
@@ -164,7 +165,7 @@ public class InventarioLotes extends javax.swing.JFrame {
             for (int i = 0; i < columnCount; i++) {
                 fila[i] = model.getValueAt(filaDeseada, i);
             }
-            cv.agregarProducto(tablaVenta, fila);
+            cv.agregarCelular(tablaVenta, fila);
             cv.sumarTotal();
         }else {
             JOptionPane.showMessageDialog(null, "Este producto ya fue agregado al carrito");

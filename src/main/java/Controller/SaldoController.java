@@ -16,7 +16,7 @@ public class SaldoController implements RecargaController{
     public List<Object[]> listarRecargas() {
         List<Object[]> listaSaldo;
         try{
-            listaSaldo = em.createQuery("SELECT  s.plan, s.descripcion, s.precio FROM Saldo s", Object[].class).getResultList();
+            listaSaldo = em.createQuery("SELECT s.id, s.plan, s.descripcion, s.precio FROM Saldo s", Object[].class).getResultList();
             return listaSaldo;
         }catch (NoResultException e){
             return null;

@@ -12,7 +12,7 @@ public class InternetController implements RecargaController{
     public List<Object[]> listarRecargas() {
         List<Object[]> listaInternet;
         try{
-            listaInternet = em.createQuery("SELECT i.plan, i.descripcion, i.precio FROM Internet i", Object[].class).getResultList();
+            listaInternet = em.createQuery("SELECT i.id, i.plan, i.descripcion, i.precio FROM Internet i", Object[].class).getResultList();
             return listaInternet;
         }catch (NoResultException e){
             return null;
