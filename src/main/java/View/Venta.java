@@ -45,6 +45,14 @@ public class Venta extends javax.swing.JFrame {
         this.tablaListaProductos = tablaListaProductos;
     }
 
+    public TextField getCampoTotal() {
+        return campoTotal;
+    }
+
+    public void setCampoTotal(TextField campoTotal) {
+        this.campoTotal = campoTotal;
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -380,7 +388,7 @@ public class Venta extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel botonAtras;
-    protected java.awt.TextField campoTotal;
+    private java.awt.TextField campoTotal;
     private javax.swing.JLabel iconoCelular;
     private javax.swing.JLabel iconoRecarga;
     private javax.swing.JPanel inventarioCelular;

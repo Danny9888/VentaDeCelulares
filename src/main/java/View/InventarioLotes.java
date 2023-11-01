@@ -166,6 +166,7 @@ public class InventarioLotes extends javax.swing.JFrame {
                 fila[i] = model.getValueAt(filaDeseada, i);
             }
             cv.agregarProducto(tablaVenta, fila);
+            cv.sumarTotal();
         }else {
             JOptionPane.showMessageDialog(null, "Este producto ya fue agregado al carrito");
         }

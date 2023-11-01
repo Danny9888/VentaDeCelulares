@@ -1,6 +1,7 @@
 package Controller;
 
 import View.InventarioLotes;
+import View.Venta;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.NoResultException;
 import util.JpaUtil;
@@ -58,10 +59,11 @@ public class CarroVenta {
     }
 
 
-    public String sumarTotal(JTable tabla){
+    public void sumarTotal(){
         int columna = 3;
         double total = 0;
-        DefaultTableModel model = (DefaultTableModel) tabla.getModel();
+        Venta cv = Venta.getInstance();
+        DefaultTableModel model = (DefaultTableModel) cv.getTablaListaProductos().getModel();
         int filas = model.getRowCount();
         System.out.println("Filas, " + filas);
         for(int i = 0 ; i < filas ; i++){
@@ -70,8 +72,8 @@ public class CarroVenta {
                     total += ((Number) valor).intValue();
                 }
         }
-        String totalString = String.valueOf(total);
-        return totalString;
+        String totalString = String.valueOf( "Q"+ total);
+        cv.getCampoTotal().setText(totalString);
     }
 
 }
