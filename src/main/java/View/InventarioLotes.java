@@ -156,13 +156,19 @@ public class InventarioLotes extends javax.swing.JFrame {
         Venta venta = Venta.getInstance();
         JTable tablaVenta = venta.tablaListaProductos;
         int filaDeseada = tablaInventarioCelularesLotes.getSelectedRow();
+        int columna = 0;
         DefaultTableModel model = (DefaultTableModel) tablaInventarioCelularesLotes.getModel();
-        int columnCount = model.getColumnCount();
-        Object[] fila = new Object[columnCount];
-        for (int i = 0; i < columnCount; i++) {
-            fila[i] = model.getValueAt(filaDeseada, i);
+        Integer inventario  = (Integer) tablaInventarioCelularesLotes.getValueAt(filaDeseada, columna);
+        if (inventario > 0){
+            int columnCount = model.getColumnCount();
+            Object[] fila = new Object[columnCount];
+            for (int i = 0; i < columnCount; i++) {
+                fila[i] = model.getValueAt(filaDeseada, i);
+            }
+            cv.agregarProducto(tablaVenta, fila);
+        }else {
+            JOptionPane.showMessageDialog(null, "Este producto ya fue agregado al carrito");
         }
-        cv.agregarProducto(tablaVenta, fila);
     }
 
     public void mostrarCeuluaresPorLote(String codigoBarra){
