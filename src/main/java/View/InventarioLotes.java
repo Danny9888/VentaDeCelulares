@@ -154,7 +154,7 @@ public class InventarioLotes extends javax.swing.JFrame {
     public void obtenerItemSeleccionado(){
         CarroVenta cv = CarroVenta.getInstance();
         Venta venta = Venta.getInstance();
-        JTable tablaVenta = venta.tablaListaProductos;
+        JTable tablaVenta = venta.getTablaListaProductos();
         int filaDeseada = tablaInventarioCelularesLotes.getSelectedRow();
         int columna = 0;
         DefaultTableModel model = (DefaultTableModel) tablaInventarioCelularesLotes.getModel();

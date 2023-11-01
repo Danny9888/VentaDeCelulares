@@ -37,6 +37,14 @@ public class Venta extends javax.swing.JFrame {
         tablaListaProductos.getTableHeader().setFont(font);
     }
 
+    public JTable getTablaListaProductos() {
+        return tablaListaProductos;
+    }
+
+    public void setTablaListaProductos(JTable tablaListaProductos) {
+        this.tablaListaProductos = tablaListaProductos;
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -388,7 +396,7 @@ public class Venta extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
     private javax.swing.JScrollPane jScrollPane2;
-    protected javax.swing.JTable tablaListaProductos;
+    private javax.swing.JTable tablaListaProductos;
     private javax.swing.JLabel textTotal;
     // End of variables declaration//GEN-END:variables
 }
