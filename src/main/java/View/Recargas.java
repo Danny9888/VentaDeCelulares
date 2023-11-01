@@ -232,6 +232,8 @@ public class Recargas extends javax.swing.JFrame {
                 double precioVenta = (double) recarga[2];
                 model.addRow(new Object[]{plan,descripcion,precioVenta});
             }
+        }else {
+            JOptionPane.showInputDialog(null, "No se encontraron resultados");
         }
 
     }
