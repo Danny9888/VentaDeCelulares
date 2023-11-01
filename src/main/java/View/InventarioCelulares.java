@@ -170,7 +170,7 @@ public class InventarioCelulares extends javax.swing.JFrame {
             System.out.println(codigoBarra);
             pantalla.abrirPantalla(inv, 600, 350);
             inv.mostrarCeuluaresPorLote(codigoBarraString);
-            int fila = venta.tablaListaProductos.getRowCount();
+            int fila = venta.getTablaListaProductos().getRowCount();
             if (fila > 0 ){
                 cv.disminuirInventario();
             }
