@@ -169,12 +169,12 @@ public class InventarioCelulares extends javax.swing.JFrame {
             String codigoBarraString = codigoBarra.toString();
             System.out.println(codigoBarra);
             pantalla.abrirPantalla(inv, 600, 350);
+            inv.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
             inv.mostrarCeuluaresPorLote(codigoBarraString);
             int fila = venta.getTablaListaProductos().getRowCount();
             if (fila > 0 ){
                 cv.disminuirInventario();
             }
-            inv.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
             this.dispose();
         }
     }//GEN-LAST:event_tablaInventarioCelularesKeyReleased

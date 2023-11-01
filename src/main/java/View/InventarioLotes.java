@@ -102,7 +102,7 @@ public class InventarioLotes extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void tablaInventarioCelularesLotesKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tablaInventarioCelularesKeyReleased
-        if (evt.getKeyCode() == KeyEvent.VK_ENTER){
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER ){
             CarroVenta cv = CarroVenta.getInstance();
             obtenerItemSeleccionado();
             this.dispose();
