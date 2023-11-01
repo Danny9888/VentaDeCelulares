@@ -8,7 +8,9 @@ import util.JpaUtil;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 
 public class CarroVenta {
@@ -40,16 +42,18 @@ public class CarroVenta {
 
     }
 
-
     public void disminuirInventario(){
         InventarioLotes inv = InventarioLotes.getInstance();
         CarroVenta cv = CarroVenta.getInstance();
         JTable table = inv.getTablaInventarioCelularesLotes();
         List<String> lista = cv.getListaDeProductos();
-        String itemLista = lista.get(0);
-        String itemTabla = (String) table.getValueAt(0,1);
-        if (itemTabla.equals(itemLista)){
-            table.setValueAt(0,0,0);
+        Set<String> listaSet = new HashSet<>(lista);
+        int columna = 1;
+        for (int i = 0; i < table.getRowCount(); i++) {
+            String itemTabla = (String) table.getValueAt(i, columna);
+            if (listaSet.contains(itemTabla)) {
+                table.setValueAt(0, i, 0);
+            }
         }
     }
 
