@@ -13,9 +13,9 @@ public class Mensajes extends Recarga{
 
     @Id
     @Column(name = "ID_MENSAJES")
-    private Long id;
+    private int id;
 
-    public Mensajes(String plan, String descripcion, double precio, Long id) {
+    public Mensajes(String plan, String descripcion, double precio, int id) {
         super(plan, descripcion, precio);
         this.id = id;
     }
@@ -24,11 +24,11 @@ public class Mensajes extends Recarga{
 
     }
 
-    public void setId(Long id) {
+    public void setId(int id) {
         this.id = id;
     }
 
-    public Long getId() {
+    public int getId() {
         return id;
     }
 

@@ -6,12 +6,11 @@ package View;
 
 import Controller.CarroVenta;
 import Controller.CelularController;
-import tools.Tablas;
+import tools.Tabla;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 import java.util.List;
 
 /**
@@ -30,10 +29,9 @@ public class InventarioLotes extends javax.swing.JFrame {
 
     public InventarioLotes() {
         initComponents();
-        Tablas tb = Tablas.getInstance();
+        Tabla tb = Tabla.getInstance();
         tb.enter(tablaInventarioCelularesLotes);
         tablaInventarioCelularesLotes.getInputMap(JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT).put(KeyStroke.getKeyStroke(KeyEvent.VK_ENTER, 0), "none");
-
     }
 
     /**

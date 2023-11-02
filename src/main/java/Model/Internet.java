@@ -13,22 +13,22 @@ public class Internet extends Recarga{
 
     @Id
     @Column(name = "ID_INTERNET")
-    private Long id;
+    private int id;
 
     public Internet(){
 
     }
 
-    public Internet(String plan, String descripcion, double precio, Long id) {
+    public Internet(String plan, String descripcion, double precio, int id) {
         super(plan, descripcion, precio);
         this.id = id;
     }
 
-    public void setId(Long id) {
+    public void setId(int id) {
         this.id = id;
     }
 
-    public Long getId() {
+    public int getId() {
         return id;
     }
 

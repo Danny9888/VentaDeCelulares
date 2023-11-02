@@ -12,6 +12,7 @@ import javax.swing.table.DefaultTableModel;
 import java.awt.event.KeyEvent;
 import java.util.List;
 import tools.Pantalla;
+import tools.Tabla;
 
 /**
  *
@@ -30,6 +31,8 @@ public class InventarioCelulares extends javax.swing.JFrame {
 
     public InventarioCelulares() {
         initComponents();
+        Tabla tabla = Tabla.getInstance();
+        tabla.enter(tablaInventarioCelulares);
         tablaInventarioCelulares.getInputMap(JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT).put(KeyStroke.getKeyStroke(KeyEvent.VK_ENTER, 0), "none");
     }
 

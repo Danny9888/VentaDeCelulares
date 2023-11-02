@@ -222,7 +222,7 @@ public class Recargas extends javax.swing.JFrame {
             MensajesController ms = new MensajesController();
             recargas =  ms.listarRecargas();
             for (Object[] recarga : recargas){
-                String id = (String) recarga[0];
+                Integer id = (Integer) recarga[0];
                 String plan = (String) recarga[1];
                 String descripcion =(String)  recarga[2];
                 double precioVenta = (double) recarga[3];
@@ -232,14 +232,14 @@ public class Recargas extends javax.swing.JFrame {
             InternetController inter = new InternetController();
             recargas =  inter.listarRecargas();
             for (Object[] recarga : recargas){
-                String id = (String) recarga[0];
+                Integer id = (Integer) recarga[0];
                 String plan = (String) recarga[1];
                 String descripcion =(String)  recarga[2];
                 double precioVenta = (double) recarga[3];
                 model.addRow(new Object[]{id,plan,descripcion,precioVenta});
             }
         }else {
-            JOptionPane.showInputDialog(null, "No se encontraron resultados");
+            JOptionPane.showMessageDialog(null, "No se encontraron resultados");
         }
     }
 
