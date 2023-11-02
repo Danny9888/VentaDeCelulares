@@ -4,10 +4,13 @@
  */
 package View;
 
+import Controller.CarroVenta;
+import jdk.jfr.Event;
 import tools.Pantalla;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.KeyEvent;
 
 /**
  *
@@ -241,6 +244,11 @@ public class Venta extends javax.swing.JFrame {
         tablaListaProductos.setRowHeight(35);
         tablaListaProductos.setSelectionBackground(new java.awt.Color(102, 102, 102));
         tablaListaProductos.setSelectionForeground(new java.awt.Color(255, 255, 255));
+        tablaListaProductos.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                tablaListaProductosKeyReleased(evt);
+            }
+        });
         jScrollPane2.setViewportView(tablaListaProductos);
 
         textTotal.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
@@ -351,6 +359,14 @@ public class Venta extends javax.swing.JFrame {
         pantalla.abrirPantalla(recargas, 800,500);
         recargas.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
     }//GEN-LAST:event_inventarioRecargaMouseClicked
+
+    private void tablaListaProductosKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tablaListaProductosKeyReleased
+        CarroVenta cv = new CarroVenta();
+        if(evt.getKeyCode() == KeyEvent.VK_DELETE){
+            cv.eliminarProducto();
+            cv.sumarTotal();
+        }
+    }//GEN-LAST:event_tablaListaProductosKeyReleased
 
     /**
      * @param args the command line arguments

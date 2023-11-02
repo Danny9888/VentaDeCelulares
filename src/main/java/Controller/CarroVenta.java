@@ -85,4 +85,11 @@ public class CarroVenta {
         cv.getCampoTotal().setText(totalString);
     }
 
+    public void eliminarProducto(){
+        Venta venta = Venta.getInstance();
+        DefaultTableModel model = (DefaultTableModel)  venta.getTablaListaProductos().getModel();
+        int fila = venta.getTablaListaProductos().getSelectedRow();
+        model.removeRow(fila);
+    }
+
 }
