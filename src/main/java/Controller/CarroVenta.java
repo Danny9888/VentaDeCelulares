@@ -69,7 +69,7 @@ public class CarroVenta {
 
 
     public void sumarTotal(){
-        int columna = 3;
+        int columna = 4;
         double total = 0;
         Venta cv = Venta.getInstance();
         DefaultTableModel model = (DefaultTableModel) cv.getTablaListaProductos().getModel();
