@@ -251,8 +251,7 @@ public class Recargas extends javax.swing.JFrame {
         DefaultTableModel model = (DefaultTableModel) tablaRecargas.getModel();
         int columnas = model.getColumnCount();
         Object[] fila = new Object[columnas];
-        fila[0] = 1;
-        for (int i = 1; i < columnas; i++) {
+        for (int i = 0; i < columnas; i++) {
             fila[i] = model.getValueAt(filaDeseada, i);
         }
         cv.agregarRecarga(tablaVenta, fila);

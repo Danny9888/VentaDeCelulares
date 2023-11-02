@@ -37,7 +37,7 @@ public class CarroVenta {
         String producto = (String) obj[2];
         String descripcion = (String) obj[3];
         double precioVenta = (double) obj[5];
-        model.addRow(new Object[]{cantidad, producto, descripcion, precioVenta});
+        model.addRow(new Object[]{cantidad, imei, producto, descripcion, precioVenta});
         listaDeProductos.add(imei);
     }
 
@@ -48,7 +48,7 @@ public class CarroVenta {
         String producto = (String) obj[1];
         String descripcion = (String) obj[2];
         double precioVenta = (double) obj[3];
-        model.addRow(new Object[]{cantidad, producto, descripcion, precioVenta});
+        model.addRow(new Object[]{cantidad, id, producto, descripcion, precioVenta});
         listaDeProductos.add(id);
     }
 
@@ -88,7 +88,14 @@ public class CarroVenta {
     public void eliminarProducto(){
         Venta venta = Venta.getInstance();
         DefaultTableModel model = (DefaultTableModel)  venta.getTablaListaProductos().getModel();
+        CarroVenta cv = CarroVenta.getInstance();
+        List<String> lista = cv.getListaDeProductos();
+        JTable invLotes = InventarioLotes.getInstance().getTablaInventarioCelularesLotes();
+        //Fila y columna de la tabla ventas
         int fila = venta.getTablaListaProductos().getSelectedRow();
+        int columna = 1;
+        String identificadorItem = (String) model.getValueAt(fila, columna);
+        cv.listaDeProductos.remove(identificadorItem);
         model.removeRow(fila);
     }
 

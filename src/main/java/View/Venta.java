@@ -230,11 +230,11 @@ public class Venta extends javax.swing.JFrame {
 
             },
             new String [] {
-                "CANTIDAD", "PRODUCTO", "DESCRIPCION", "PRECIO"
+                "CANTIDAD", "CODIGO", "PRODUCTO", "DESCRIPCION", "PRECIO"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false
+                false, true, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
