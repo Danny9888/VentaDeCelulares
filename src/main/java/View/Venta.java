@@ -349,6 +349,7 @@ public class Venta extends javax.swing.JFrame {
 
     private void inventarioRecargaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_inventarioRecargaMouseClicked
         pantalla.abrirPantalla(recargas, 800,500);
+        recargas.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
     }//GEN-LAST:event_inventarioRecargaMouseClicked
 
     /**
