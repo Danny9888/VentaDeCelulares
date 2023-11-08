@@ -49,7 +49,7 @@ public class Clientes {
 
 
         JButton guardarButton = new JButton("Guardar");
-        guardarButton.setFont(new Font("SansSerif", Font.PLAIN, 16));
+        guardarButton.setFont(new Font("SansSerif", Font.PLAIN, 23));
         guardarButton.setBackground(Color.BLACK);  // Color negro para el fondo
         guardarButton.setForeground(Color.WHITE);  // Letras en blanco
         gbc.gridy = 7;
